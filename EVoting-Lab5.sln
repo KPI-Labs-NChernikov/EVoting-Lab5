@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{8168DEDD-39C1-451D-9115-47D4F9A75D2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms", "Algorithms\Algorithms.csproj", "{2405217E-198F-4367-BF08-35ADB8A0A14C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelling", "Modelling\Modelling.csproj", "{0E6C7B03-42DF-460C-8721-736B7726AAC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8168DEDD-39C1-451D-9115-47D4F9A75D2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8168DEDD-39C1-451D-9115-47D4F9A75D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8168DEDD-39C1-451D-9115-47D4F9A75D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8168DEDD-39C1-451D-9115-47D4F9A75D2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2405217E-198F-4367-BF08-35ADB8A0A14C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2405217E-198F-4367-BF08-35ADB8A0A14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2405217E-198F-4367-BF08-35ADB8A0A14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2405217E-198F-4367-BF08-35ADB8A0A14C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E6C7B03-42DF-460C-8721-736B7726AAC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E6C7B03-42DF-460C-8721-736B7726AAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E6C7B03-42DF-460C-8721-736B7726AAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E6C7B03-42DF-460C-8721-736B7726AAC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B1EE56B-5575-4202-A95A-7779D6E7DA79}
+	EndGlobalSection
+EndGlobal
