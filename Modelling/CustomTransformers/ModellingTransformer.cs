@@ -32,10 +32,10 @@ public sealed class ModellingTransformer : IObjectToByteArrayTransformer
 
     public byte[] Transform(object obj)
     {
-        if (obj.GetType() == typeof(int))
+        if (obj is int number)
         {
             var data = new byte[sizeof(int)];
-            BinaryPrimitives.WriteInt32BigEndian(data, (int)obj);
+            BinaryPrimitives.WriteInt32BigEndian(data, number);
             return data;
         }
 
