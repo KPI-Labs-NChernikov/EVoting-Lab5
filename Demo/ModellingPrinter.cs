@@ -24,11 +24,13 @@ public sealed class ModellingPrinter
         {
             Console.WriteLine($"{voter.FullName} ({voter.Id})");
         }
+        Console.WriteLine();
         Console.WriteLine("Candidates:");
         foreach (var candidate in candidates)
         {
             Console.WriteLine($"{candidate.FullName} ({candidate.Id})");
         }
+        Console.WriteLine();
 
         var subCommission1 = _dataFactory.CreateElectionCommission(commission.VotersSignaturePublicKeys);
         var subCommission2 = _dataFactory.CreateElectionCommission(commission.VotersSignaturePublicKeys);
@@ -56,6 +58,7 @@ public sealed class ModellingPrinter
                 Console.WriteLine($"Commission 2 accepted {voter.Id} vote.");
             }
         }
+        Console.WriteLine();
 
         var commission1Results = subCommission1.PublishBallots();
         var commission2Results = subCommission2.PublishBallots();

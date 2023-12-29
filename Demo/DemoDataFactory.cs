@@ -66,7 +66,7 @@ public sealed class DemoDataFactory
         var dictionary = new Dictionary<Voter, int>();
         for (var i = 0; i < voters.Count; i++)
         {
-            var candidateIndex = (i % 7 + 1) switch
+            var candidateIndex = (i % 8 + 1) switch
             {
                 1 => 0,
                 2 => 0,
@@ -76,6 +76,7 @@ public sealed class DemoDataFactory
                 5 => 2,
                 6 => 2,
                 7 => 2,
+                8 => 0,
 
                 _ => throw new InvalidOperationException("Negative and zero voters' ids are not supported in this method.")
             };
