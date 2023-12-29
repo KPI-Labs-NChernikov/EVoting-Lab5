@@ -13,8 +13,9 @@ public sealed class Voter
     private readonly ISignatureProvider<DSAParameters> _signatureProvider;
     private readonly IEncryptionProvider<AsymmetricKeyParameter> _encryptionProvider;
     private readonly IObjectToByteArrayTransformer _transformer;
+    private readonly IRandomProvider _randomProvider;
 
-    public Voter(string fullName, Keys<DSAParameters> signatureKeys, ISignatureProvider<DSAParameters> signatureProvider, IEncryptionProvider<AsymmetricKeyParameter> encryptionProvider, IObjectToByteArrayTransformer transformer)
+    public Voter(string fullName, Keys<DSAParameters> signatureKeys, ISignatureProvider<DSAParameters> signatureProvider, IEncryptionProvider<AsymmetricKeyParameter> encryptionProvider, IObjectToByteArrayTransformer transformer, IRandomProvider randomProvider)
     {
         FullName = fullName;
         PublicKey = signatureKeys.PublicKey;
@@ -22,10 +23,30 @@ public sealed class Voter
         _signatureProvider = signatureProvider;
         _encryptionProvider = encryptionProvider;
         _transformer = transformer;
+        _randomProvider = randomProvider;
     }
 
-    public byte[] PrepareBallot(int candidateId, AsymmetricKeyParameter centralElectionCommissionEncryptionPublicKey)
+    public (SignedData<Ballot>, SignedData<Ballot>) PrepareBallots(int candidateId, AsymmetricKeyParameter centralElectionCommissionEncryptionPublicKey)
     {
-        throw new NotImplementedException();
+        var candidateIdParts = IntHelpers.PickRandomDivisors(candidateId, _randomProvider);
+        var candidateIdPartsAsArray = new [] { candidateIdParts.Item1, candidateIdParts.Item2 };
+
+        var ballots = new List<Ballot>();
+        foreach (var part in candidateIdPartsAsArray)
+        {
+            var partAsByteArray = _transformer.Transform(part);
+            var encryptedPart = _encryptionProvider.Encrypt(partAsByteArray, centralElectionCommissionEncryptionPublicKey);
+            ballots.Add(new Ballot(encryptedPart, part));
+        }
+
+        var signedBallots = new List<SignedData<Ballot>>();
+        foreach (var ballot in ballots)
+        {
+            var ballotAsByteArray = _transformer.Transform(ballot);
+            var signature = _signatureProvider.Sign(ballotAsByteArray, _privateKey);
+            signedBallots.Add(new SignedData<Ballot>(ballot, signature));
+        }
+
+        return (signedBallots[0], signedBallots[1]);
     }
 }

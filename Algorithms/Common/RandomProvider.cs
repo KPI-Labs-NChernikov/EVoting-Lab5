@@ -14,4 +14,9 @@ public sealed class RandomProvider : IRandomProvider
     {
         return _random.Next(max);
     }
+
+    public int NextInt(int min, int max)
+    {
+        return _random.Next(min, max);
+    }
 }
