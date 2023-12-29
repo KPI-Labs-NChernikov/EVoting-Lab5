@@ -36,7 +36,7 @@ public sealed class Voter
         {
             var partAsByteArray = _transformer.Transform(part);
             var encryptedPart = _encryptionProvider.Encrypt(partAsByteArray, centralElectionCommissionEncryptionPublicKey);
-            ballots.Add(new Ballot(encryptedPart, part));
+            ballots.Add(new Ballot(encryptedPart, Id));
         }
 
         var signedBallots = new List<SignedData<Ballot>>();

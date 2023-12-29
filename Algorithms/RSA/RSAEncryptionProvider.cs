@@ -26,10 +26,23 @@ public sealed class RSAEncryptionProvider : IEncryptionProvider<AsymmetricKeyPar
     public byte[] MultiplyResults(IEnumerable<byte[]> data, AsymmetricKeyParameter key)
     {
         var m = ((RsaKeyParameters)key).Modulus;
-        var result = BigInteger.One;
+        //var result = BigInteger.One;
+        //foreach (var dataPart in data)
+        //{
+        //    result = result.Multiply(new BigInteger(1, dataPart, 0, dataPart.Length));
+        //}
+        //result = result.Mod(m);
+        BigInteger? result = null;
         foreach (var dataPart in data)
         {
-            result = result.Multiply(new BigInteger(1, dataPart, 0, dataPart.Length));
+            if (result is null)
+            {
+                result = new BigInteger(1, dataPart, 0, dataPart.Length);
+            }
+            else
+            {
+                result = result.Multiply(new BigInteger(1, dataPart, 0, dataPart.Length));
+            }
         }
         result = result.Mod(m);
         return result.ToByteArrayUnsigned();

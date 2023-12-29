@@ -18,7 +18,7 @@ public sealed class ElectionCommission
         _transformer = transformer;
     }
 
-    public Result<Ballot> AcceptBallot(SignedData<Ballot> signedBallot)
+    public Result AcceptBallot(SignedData<Ballot> signedBallot)
     {
         return VerifyVoter(signedBallot)
             .Bind(SaveBallot);
@@ -48,11 +48,11 @@ public sealed class ElectionCommission
         return Result.Ok(signedBallot.Data);
     }
 
-    private Result<Ballot> SaveBallot(Ballot ballot)
+    private Result SaveBallot(Ballot ballot)
     {
         _acceptedVoterIds.Add(ballot.VoterId);
         _savedBallots.Add(ballot);
-        return Result.Ok(ballot);
+        return Result.Ok();
     }
 
     public IReadOnlyList<Ballot> PublishBallots()
